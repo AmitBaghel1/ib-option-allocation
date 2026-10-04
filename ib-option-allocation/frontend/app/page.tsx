@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { api, errorText } from "@/lib/api";
-import { ErrorBox, PageHeader, Spinner, Stat } from "@/components/ui";
+import { ErrorBox, Spinner, Stat } from "@/components/ui";
 import { IconGrid, IconPlay, IconSwap, IconUserPlus, IconWarning } from "@/components/icons";
 
 export default function Dashboard() {
@@ -17,10 +17,29 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Dashboard" subtitle="Grade 11 IBDP option allocation at a glance">
-        <Link href="/new-allocation" className="btn"><IconPlay /> Run allocation</Link>
-        <Link href="/change-requests" className="btn-secondary"><IconSwap /> Change requests</Link>
-      </PageHeader>
+      <div className="hero animate-fade-up">
+        <div className="relative z-10 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <div className="hero-eyebrow">IB Option Allocation · Change Feasibility</div>
+            <div className="hero-title mt-1">Class Command Center</div>
+            <p className="text-white/80 text-sm mt-1">Grade 11 IBDP option allocation at a glance.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <Link href="/new-allocation" className="inline-flex items-center gap-1.5 rounded-lg bg-white text-indigo-700 px-3.5 py-2 text-sm font-semibold shadow-sm hover:bg-indigo-50 transition">
+              <IconPlay /> Run allocation
+            </Link>
+            <Link href="/change-requests" className="inline-flex items-center gap-1.5 rounded-lg bg-white/15 text-white ring-1 ring-white/25 px-3.5 py-2 text-sm font-semibold hover:bg-white/25 transition">
+              <IconSwap /> Change requests
+            </Link>
+          </div>
+        </div>
+        <div className="relative z-10 mt-4 flex flex-wrap gap-2">
+          <span className="hero-chip">Seats {d.total_enrolled}/{d.total_capacity} · {pct}%</span>
+          <span className="hero-chip">{d.students.existing} returning · {d.students.new} new</span>
+          <span className="hero-chip">{d.pending_change_requests} pending changes</span>
+          <span className="hero-chip">{d.offerings} active offerings</span>
+        </div>
+      </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <Stat label="Existing students" value={d.students.existing} sub="returning, already allocated" icon={<IconGrid className="w-7 h-7" />} />
