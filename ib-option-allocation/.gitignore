@@ -29,3 +29,7 @@ Thumbs.db
 # Archify sidecars
 docs/diagrams/*.visual-check.*
 docs/diagrams/.*.snapshot.json
+
+# Local runtime logs
+*.log
+*.err

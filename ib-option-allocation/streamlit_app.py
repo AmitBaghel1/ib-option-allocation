@@ -64,6 +64,72 @@ STATUS_COLOR = {
 }
 
 
+# --------------------------------------------------------------------------- theme
+
+_APP_CSS = """
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--ib-primary:#6366f1;--ib-primary-dark:#4f46e5;--ib-accent:#8b5cf6;--ib-ink:#0f172a;
+ --ib-muted:#64748b;--ib-border:#e6e9f3;--ib-shadow:0 1px 2px rgba(15,23,42,.04),0 14px 36px -22px rgba(15,23,42,.45);}
+html,body,.stApp,[data-testid="stAppViewContainer"],[data-testid="stSidebar"]{
+ font-family:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;}
+.stApp{background:radial-gradient(1100px 520px at 100% -12%,#eef2ff 0,rgba(238,242,255,0) 55%),
+ radial-gradient(900px 480px at -12% 0,#f5f3ff 0,rgba(245,243,255,0) 52%),#f6f7fb;}
+header[data-testid="stHeader"]{background:transparent;}
+.block-container{padding-top:1.9rem;padding-bottom:3rem;max-width:1400px;}
+h1,h2,h3,h4{color:var(--ib-ink);letter-spacing:-.02em;font-weight:750;}
+h1{font-size:1.9rem;font-weight:800;}
+h2,h3{padding-left:.6rem;border-left:4px solid var(--ib-primary);}
+[data-testid="stMetric"]{background:#fff;border:1px solid var(--ib-border);border-radius:16px;padding:1rem 1.05rem;
+ box-shadow:var(--ib-shadow);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+[data-testid="stMetric"]:hover{transform:translateY(-3px);border-color:#c7d2fe;
+ box-shadow:0 16px 38px -18px rgba(99,102,241,.6);}
+[data-testid="stMetricLabel"] p{color:var(--ib-muted);font-weight:600;text-transform:uppercase;
+ letter-spacing:.05em;font-size:.72rem;}
+[data-testid="stMetricValue"]{color:var(--ib-primary-dark);font-weight:800;}
+.stButton>button,.stDownloadButton>button,[data-testid="stFormSubmitButton"] button{border-radius:12px;font-weight:600;
+ border:1px solid var(--ib-border);transition:transform .16s,box-shadow .16s,border-color .16s,filter .16s;}
+.stButton>button:hover,.stDownloadButton>button:hover,[data-testid="stFormSubmitButton"] button:hover{
+ transform:translateY(-1px);border-color:#c7d2fe;box-shadow:0 12px 26px -16px rgba(99,102,241,.9);}
+.stButton>button[kind="primary"],.stDownloadButton>button[kind="primary"],
+ [data-testid="stFormSubmitButton"] button[kind="primary"]{background:linear-gradient(135deg,#6366f1,#8b5cf6);
+ border:none;color:#fff;box-shadow:0 12px 26px -14px rgba(99,102,241,1);}
+[data-testid="stDataFrame"],[data-testid="stDataEditor"]{border:1px solid var(--ib-border);border-radius:14px;
+ overflow:hidden;box-shadow:var(--ib-shadow);background:#fff;}
+[data-testid="stTabs"] [data-baseweb="tab-list"]{gap:.35rem;}
+[data-testid="stTabs"] [data-baseweb="tab"]{border-radius:10px;padding:.35rem .85rem;font-weight:600;background:#eef1f8;}
+[data-testid="stTabs"] [aria-selected="true"]{background:linear-gradient(135deg,#eef2ff,#f5f3ff);}
+[data-testid="stExpander"]{border:1px solid var(--ib-border);border-radius:14px;overflow:hidden;background:#fff;
+ box-shadow:var(--ib-shadow);}
+[data-testid="stAlert"]{border-radius:12px;}
+[data-testid="stForm"]{border:1px solid var(--ib-border);border-radius:18px;padding:1.3rem 1.45rem;background:#fff;
+ box-shadow:0 30px 70px -34px rgba(15,23,42,.5);}
+[data-testid="stSidebar"]{background:linear-gradient(180deg,#fff 0,#f2f1ff 100%);border-right:1px solid var(--ib-border);}
+[data-testid="stSidebar"] [role="radiogroup"] label{border-radius:12px;padding:.42rem .6rem;transition:background .15s;}
+[data-testid="stSidebar"] [role="radiogroup"] label:hover{background:#eef2ff;}
+.ib-hero{position:relative;overflow:hidden;border-radius:20px;padding:1.5rem 1.8rem;color:#fff;
+ background:linear-gradient(120deg,#4f46e5 0,#7c3aed 48%,#a855f7 100%);
+ box-shadow:0 24px 52px -24px rgba(79,70,229,.9);margin-bottom:1.25rem;}
+.ib-hero:after{content:"";position:absolute;right:-60px;top:-80px;width:260px;height:260px;border-radius:50%;
+ background:radial-gradient(circle,rgba(255,255,255,.3),rgba(255,255,255,0) 70%);}
+.ib-hero h1{color:#fff;margin:0;font-size:1.9rem;font-weight:800;letter-spacing:-.02em;}
+.ib-hero p{margin:.35rem 0 0;color:rgba(255,255,255,.87);font-weight:500;}
+.ib-chip{display:inline-block;margin-top:.8rem;background:rgba(255,255,255,.16);
+ border:1px solid rgba(255,255,255,.32);padding:.22rem .7rem;border-radius:999px;font-size:.76rem;font-weight:600;}
+.ib-subbrand{font-weight:800;font-size:1.05rem;letter-spacing:-.02em;background:linear-gradient(90deg,#4f46e5,#a855f7);
+ -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px;border:2px solid transparent;background-clip:content-box;}
+hr{border-color:var(--ib-border);}
+</style>
+"""
+
+
+def inject_css() -> None:
+    """Apply the app-wide visual theme: cards, gradients and typography."""
+    st.markdown(_APP_CSS, unsafe_allow_html=True)
+
+
 # --------------------------------------------------------------------------- infrastructure
 
 @st.cache_resource
@@ -131,27 +197,37 @@ def download_csv(rows: list[dict], filename: str, label: str = "Download CSV") -
 # --------------------------------------------------------------------------- login
 
 def login_view() -> None:
-    st.title("🎓 IB Option Allocation & Change Feasibility Tool")
-    st.caption("Local tool for IGCSE (Grades 7-10) and IBDP (Grades 11-12) option management.")
-    with st.form("login"):
-        col1, col2 = st.columns(2)
-        username = col1.text_input("Username", value="admin")
-        password = col2.text_input("Password", type="password")
-        if st.form_submit_button("Sign in", type="primary"):
-            with session() as db:
-                row = db.scalar(select(M.User).where(M.User.username == username.strip()))
-            if row and verify_password(password, row.password_hash):
-                st.session_state["user"] = {"username": row.username, "role": row.role}
-                st.rerun()
-            else:
-                st.error("Invalid username or password.")
-    st.info("Demo accounts — **admin / admin123** (Admin & Timetabler) · **viewer / viewer123** (read-only)")
+    _, mid, _ = st.columns([1, 1.15, 1])
+    with mid:
+        st.markdown(
+            '<div class="ib-hero">'
+            '<h1>🎓 IB Option Allocation</h1>'
+            '<p>Change Feasibility Tool · IGCSE (Grades 7–10) &amp; IBDP (Grades 11–12)</p>'
+            '<span class="ib-chip">Fully local · SQLite · no cloud</span>'
+            '</div>', unsafe_allow_html=True)
+        with st.form("login"):
+            username = st.text_input("Username", value="admin")
+            password = st.text_input("Password", type="password")
+            if st.form_submit_button("Sign in", type="primary", use_container_width=True):
+                with session() as db:
+                    row = db.scalar(select(M.User).where(M.User.username == username.strip()))
+                if row and verify_password(password, row.password_hash):
+                    st.session_state["user"] = {"username": row.username, "role": row.role}
+                    st.rerun()
+                else:
+                    st.error("Invalid username or password.")
+        st.info("Demo accounts — **admin / admin123** (Admin & Timetabler) · **viewer / viewer123** (read-only)")
 
 
 # --------------------------------------------------------------------------- pages
 
 def page_dashboard() -> None:
-    st.header("Dashboard")
+    st.markdown(
+        '<div class="ib-hero">'
+        '<h1>🎓 Class Command Center</h1>'
+        '<p>Seats, full classes, waitlists and pending change requests at a glance.</p>'
+        '<span class="ib-chip">IB Option Allocation &amp; Change Feasibility</span>'
+        '</div>', unsafe_allow_html=True)
     with session() as db:
         d = meta_api.dashboard(db)
     c = st.columns(4)
@@ -701,18 +777,21 @@ PAGES = {
 
 
 def main() -> None:
+    inject_css()
     bootstrap()
     if not st.session_state.get("user"):
         login_view()
         return
     u = st.session_state["user"]
     with st.sidebar:
-        st.markdown("### 🎓 IB Option Allocation")
-        st.caption("& Change Feasibility Tool")
+        st.markdown('<div class="ib-subbrand">🎓 IB Option Allocation</div>'
+                    '<div style="color:#64748b;font-size:.8rem;margin-bottom:.35rem;">'
+                    'Change Feasibility Tool</div>', unsafe_allow_html=True)
+        st.divider()
         choice = st.radio("Go to", list(PAGES.keys()), label_visibility="collapsed")
         st.divider()
         st.caption(f"**{u['username']}** · {'Admin / Timetabler' if u['role'] == 'ADMIN' else 'Read-only'}")
-        if st.button("Log out"):
+        if st.button("Log out", use_container_width=True):
             st.session_state.pop("user")
             st.rerun()
     PAGES[choice]()
