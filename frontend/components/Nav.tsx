@@ -22,7 +22,7 @@ export default function Nav() {
   const { user, logout } = useAuth();
   if (path === "/login" || !user) return null;
   return (
-    <aside className="w-64 shrink-0 sticky top-0 h-screen bg-slate-900 text-slate-300 flex flex-col">
+    <aside className="w-64 shrink-0 sticky top-0 h-screen bg-gradient-to-b from-slate-900 to-slate-950 text-slate-300 flex flex-col border-r border-slate-800/60">
       <div className="px-5 pt-5 pb-4">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-400 to-violet-500 grid place-items-center text-white font-bold shadow-lg shadow-indigo-900/40">IB</div>
@@ -38,7 +38,7 @@ export default function Nav() {
           return (
             <Link key={href} href={href}
               className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition
-                ${active ? "bg-indigo-600 text-white font-semibold shadow-sm" : "hover:bg-slate-800 hover:text-white"}`}>
+                ${active ? "bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold shadow-sm shadow-indigo-900/40" : "hover:bg-slate-800/80 hover:text-white"}`}>
               <Icon className="w-[18px] h-[18px] shrink-0" />
               <span className="truncate">{label}</span>
             </Link>

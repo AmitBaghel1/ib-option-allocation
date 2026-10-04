@@ -41,7 +41,7 @@ const TONES: Record<string, string> = {
 
 export function Stat({ label, value, sub, tone = "slate", icon }: { label: string; value: any; sub?: string; tone?: string; icon?: React.ReactNode }) {
   return (
-    <div className="card relative overflow-hidden">
+    <div className="card card-hover relative overflow-hidden">
       <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${TONES[tone] || TONES.slate}`} />
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
@@ -78,7 +78,8 @@ export function PageHeader({ title, subtitle, children }: { title: string; subti
   return (
     <div className="flex flex-wrap items-end justify-between gap-3">
       <div>
-        <h1 className="h1">{title}</h1>
+        <div className="text-[11px] font-bold uppercase tracking-widest text-indigo-500">IB Option Allocation</div>
+        <h1 className="h1 mt-0.5">{title}</h1>
         {subtitle && <p className="muted mt-1">{subtitle}</p>}
       </div>
       <div className="flex flex-wrap items-center gap-2">{children}</div>
