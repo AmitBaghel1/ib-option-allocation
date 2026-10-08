@@ -27,17 +27,18 @@ Your repo is already prepared:
 
 ## STEP 2 — Push your code (2 min, in PowerShell)
 
-Open PowerShell in this folder:
-`C:\Users\abagh\.cline\data\workspaces\chat\school-ai\school-ai-analytics-ib-option-allocation\ib-option-allocation`
+Open PowerShell and run (pushes ONLY the IB folder using subtree split):
 
 ```powershell
 $g = 'C:\Program Files\Git\cmd\git.exe'
-& $g remote add origin https://github.com/YOUR-USERNAME/ib-option-allocation.git
-& $g branch -M main
-& $g push -u origin main
+cd 'C:\Users\abagh\.cline\data\workspaces\chat\school-ai\school-ai-analytics-ib-option-allocation'
+& $g remote add origin https://github.com/AmitBaghel1/ib-option-allocation.git
+& $g subtree push --prefix=ib-option-allocation origin main
 ```
 
-- Replace `YOUR-USERNAME/ib-option-allocation` with the URL from Step 1.
+> The repo root on your disk contains a second app (School AI platform), so we push
+> only the `ib-option-allocation/` prefix. Vercel/Render will then see `frontend/`,
+> `backend/`, `render.yaml` at the repo root — exactly what they expect.
 - GitHub asks for a password → use a **Personal Access Token**, not your login password:
   GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
   → Generate → tick `repo` → copy the `ghp_...` token → paste as password.
